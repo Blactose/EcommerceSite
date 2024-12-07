@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <title>About Us</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const userPic = document.getElementById("user-pic");
+            const subMenuWrap = document.getElementById("sub-menu-wrap");
+
+            if (userPic) {
+                userPic.addEventListener("click", function() {
+                    subMenuWrap.style.display = (subMenuWrap.style.display === "block") ? "none" : "block";
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+
+{{> header}}
+
+<section id = "about">
+        <img src ="images/banner.png" alt="banner">
+        <div>
+            <h1>About us</h1>
+            <p>
+            Welcome to MAARC, your go-to destination for fashion that’s as unique as you are. Our company consists of our
+            five founding members: Mo Babiker, Aadit Singhal, Alen Saju, Rohan Raj and Cailan White. Together we are MAARC.
+            We offer a carefully selected range of stylish clothing and accessories designed to refresh your wardrobe. 
+            Whether you’re looking for trendy everyday pieces or something special for an event, we’ve got you covered 
+            with the latest styles at great prices.At MAARC, we believe fashion is all about self-expression, and we want
+            you to feel confident in every outfit you wear. Our collection features everything from bold graphic tees to 
+            comfortable hoodies and statement pants, so you’re sure to find something that suits your style.
+            With a user-friendly website, shopping with us is easy and convenient. We offer fast shipping, secure payment options, 
+            and dedicated customer support to ensure a smooth experience from start to finish.
+            Stay ahead of the curve, explore fresh designs, and express your individuality with MAARC. Thank you for choosing us 
+            as your fashion destination!
+            </p>
+        </div>
+    </section>
+    <hr class="custom-line">
+    <section id = "review">
+        <h2>Review our website</h2>
+        <p>
+            Please leave us a review below as well as a message for us to help improve your experience!
+        </p>
+        <div class = "star-review">
+            <input type="radio" name="rate" id="rate-5" value="5">
+            <label for="rate-5"></label>
+            <input type="radio" name="rate" id="rate-4" value="4">
+            <label for="rate-4"></label>
+            <input type="radio" name="rate" id="rate-3" value="3">
+            <label for="rate-3"></label>
+            <input type="radio" name="rate" id="rate-2" value="2">
+            <label for="rate-2"></label>
+            <input type="radio" name="rate" id="rate-1" value="1">
+            <label for="rate-1"></label>
+        </div>
+        <textarea id="review-text" placeholder="Leave a review..." maxlength="500"></textarea>
+        <button id="submit-review">Submit</button>
+</section>
+
+<script>
+document.getElementById('submit-review').addEventListener('click', function() {
+
+    const rating = document.querySelector('input[name="rate"]:checked') ? document.querySelector('input[name="rate"]:checked').value : null;
+
+    const reviewText = document.getElementById('review-text').value;
+
+    if (rating && reviewText) {
+
+        const reviewData = {
+            rating: rating,
+            review: reviewText
+        };
+
+        fetch('/reviews/submit-web-review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reviewData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Review submitted:', data);
+            alert(data.message);
+            document.getElementById('review').value = '';
+            document.querySelector('input[name="rate"]:checked').checked = false;
+
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error submitting review:', error);
+        });
+    } else {
+        alert("Please provide a rating and review before submitting");
+    }
+    });
+    </script>
+
+    {{> footer}}
+    
+</body>
+</html>

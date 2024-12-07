@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/auth_style.css">
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const userPic = document.getElementById("user-pic");
+            const subMenuWrap = document.getElementById("sub-menu-wrap");
+
+            if (userPic) {
+                userPic.addEventListener("click", function() {
+                    subMenuWrap.style.display = (subMenuWrap.style.display === "block") ? "none" : "block";
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    {{> header2 }}
+    <script>
+        function myFunction() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            }
+    </script>
+    <div class="container">
+        <div class ="form">
+            <header>
+                <h3>Log In</h3>
+            </header>
+            <form action ="/auth/login" method="POST">
+                <div class="field">
+                    <label for="Email">Email</label>
+                    <input type="email" class="field" name="email" id="email" required>
+                </div>
+                    
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" class="field" name="password" id="password" required>
+                </div>
+                <input type="checkbox" class="checkbox" onclick="myFunction()"> Show Password
+                <div class="input">
+                    <input type="submit" class="submit" name="submit" value="Login" required>
+                </div>
+                <div class="link">
+                    Don't have an account? <br> <a href="./register">Create account</a>
+                </div>
+            </form>
+        </div>
+
+        {{#if message }}
+            <h4 class="alert alert-danger mt-4">{{message}}</h4>
+        {{/if}}
+
+    </div>
+    
+</body>
+</html>

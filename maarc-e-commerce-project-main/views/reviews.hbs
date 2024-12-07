@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <title>About Us</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const userPic = document.getElementById("user-pic");
+            const subMenuWrap = document.getElementById("sub-menu-wrap");
+
+            if (userPic) {
+                userPic.addEventListener("click", function() {
+                    subMenuWrap.style.display = (subMenuWrap.style.display === "block") ? "none" : "block";
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+{{> header}}
+</section>
+    <section class="product-info">
+        <img src="{{product.image_url}}" alt="{{product.name}}">
+        <h1>{{product.name}}</h1>
+        <p>£{{product.price}}</p>
+    </section>
+
+    <section class="reviews">
+        <h2>Customer Reviews</h2>
+        {{#if reviews.length}}
+            {{#each reviews}}
+            <div class="review">
+                <strong>{{this.user_name}}</strong>
+                <p>{{this.review_text}}</p>
+                <p>Rating: {{this.rating}}</p>
+            </div>
+            {{/each}}
+        {{else}}
+            <p>No reviews yet. Be the first to review this product!</p>
+        {{/if}}
+    </section>
+
+{{#if username}}
+<section class="add-review">
+    <h2>Add a Review</h2>
+    <form action="/reviews/submit-review" method="POST">
+        <input type="hidden" name="productId" value="{{product.id}}">
+        <label for="rating">Rating:</label>
+        <select name="rating" id="rating" required>
+            <option value="5">5 - Excellent</option>
+            <option value="4">4 - Very Good</option>
+            <option value="3">3 - Good</option>
+            <option value="2">2 - Fair</option>
+            <option value="1">1 - Poor</option>
+        </select>
+        <label for="review_text">Review:</label>
+        <textarea name="review_text" id="review_text" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+{{else}}
+<p>To add reviews, you need to be logged in.</p>
+{{/if}}
+
+
+{{> footer}}
+</body>
+</html>

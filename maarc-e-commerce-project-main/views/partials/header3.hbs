@@ -1,0 +1,49 @@
+<section id = "header">
+<div class="nav">
+    <nav>
+        <a href="/index">
+            <img src="/images/logo2.svg" height="80px" width="150px" class="logo" alt="maarc logo">
+        </a>
+       
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/shop">Shop</a></li>
+            <li><a href="/basket">Basket</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+
+        <!-- Conditionally render based on user login status -->
+        <img src="/images/profile.svg" class="user-pic" id="user-pic" alt="User Profile">
+
+        <div class="sub-menu-wrap" id="sub-menu-wrap">
+            <div class="sub-menu">
+                {{#if username}}
+                    <!-- Show profile options if user is logged in -->
+                    <div class="user-info">
+                        <h3>{{username}}</h3>
+                    </div>
+                    <hr>
+                    <a href="/editprofile" class="sub-menu-link">
+                        <img src="/images/edit.svg" alt="Edit Profile Icon">
+                        <p>Edit Profile</p>
+                    </a>
+                    <a href="/auth/logout" class="sub-menu-link">
+                        <img src="/images/logout.svg" alt="Log Out Icon">
+                        <p>Log Out</p>
+                    </a>
+                {{else}}
+                    <!-- Show login/register options if user is not logged in -->
+                    <a href="/auth/login" class="sub-menu-link">
+                        <img src="/images/login.svg" alt="Login Icon">
+                        <p>Log In</p>
+                    </a>
+                    <a href="/auth/register" class="sub-menu-link">
+                        <img src="/images/register.svg" alt="Register Icon">
+                        <p>Register</p>
+                    </a>
+                {{/if}}
+            </div>
+        </div>
+    </nav>
+</div>
+</section>

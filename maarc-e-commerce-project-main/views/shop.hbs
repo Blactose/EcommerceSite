@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <title>Shop</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const userPic = document.getElementById("user-pic");
+            const subMenuWrap = document.getElementById("sub-menu-wrap");
+
+            if (userPic) {
+                userPic.addEventListener("click", function() {
+                    subMenuWrap.style.display = (subMenuWrap.style.display === "block") ? "none" : "block";
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+
+    {{> header}}
+
+    {{#if products.length}}
+    <div class="sort-container">
+        <form id="sortForm" method="GET" action="/shop">
+            <label for="sort">Sort By:</label>
+            <select name="sort" id="sort" onchange="document.getElementById('sortForm').submit()">
+                <option value="default" {{#if (eq currentSort 'default')}}selected{{/if}}>Default</option>
+                <option value="price_asc" {{#if (eq currentSort 'price_asc')}}selected{{/if}}>Price: Low to High</option>
+                <option value="price_desc" {{#if (eq currentSort 'price_desc')}}selected{{/if}}>Price: High to Low</option>
+            </select>
+        </form>
+    </div>
+    <section class="catalogue">
+        {{#each products}}
+        <div class="item">
+            <img src="{{this.image_url}}" alt="{{this.name}}">
+            <h3>{{this.name}}</h3>
+            <p>£{{this.price}}</p>
+            <button onclick="addToBasket({{this.id}})" class="addToBasket">Add to Basket</button>
+            <button onclick="location.href='/reviews/{{this.id}}'" class="seeReviews">See/Add Reviews</button>
+        </div>
+        {{/each}}
+    {{else}}
+        <div class="no-products">
+            <p>No products found...</p>
+            <img src="./images/sleeprobo.svg">
+        </div>
+    {{/if}}
+</section>
+
+    {{> footer}}
+
+<script src="js/basket.js"></script>
+</body>
+</html>

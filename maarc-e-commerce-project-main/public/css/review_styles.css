@@ -1,0 +1,94 @@
+
+
+/* Product Info */
+.product-info {
+    background: #fff;
+    padding: 2em;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-info img {
+    max-width: 30%;
+    height: auto;
+}
+
+.product-info h1 {
+    margin-top: 0.5em;
+}
+
+/* Reviews Section */
+.reviews {
+    margin: 2em auto;
+    padding: 1em;
+    max-width: 800px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.reviews h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5em;
+}
+
+.review {
+    padding: 1em 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+.review strong {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #333;
+    font-size: 1.2em;
+}
+
+/* Add Review Section */
+.add-review {
+    margin: 2em auto;
+    padding: 1em;
+    max-width: 800px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-review h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5em;
+}
+
+.add-review form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-review label {
+    margin: 0.5em 0 0.2em;
+}
+
+.add-review textarea,
+.add-review select,
+.add-review input,
+.add-review button {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.add-review button {
+    background: #000000;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 30%;
+    margin: auto;
+}
+
+.add-review button:hover {
+    background: #555;
+}
